@@ -17,5 +17,34 @@ def entry(request, title):
     })
 
 
+def search(request):
+    entries = list(map(lambda x: x.lower(), util.list_entries()))
+    find_entries = []
+
+    search_box = request.GET.get('q').lower()
+
+    if search_box in entries:
+        return render(request, "encyclopedia/entry.html", {
+            "entry": util.get_entry(search_box),
+            "title": search_box.capitalize()
+        })
+    else:
+        for entry in entries:
+            if search_box in entry:
+                find_entries.append(entry)
+
+
+    if find_entries:
+        return render(request, "encyclopedia/entry.html", {
+            "entry": util.get_entry(find_entries[0]),
+            "title": find_entries[0].capitalize()
+        })
+    else:
+        return render(request, "encyclopedia/search.html", {
+            "entries": util.list_entries()
+        })
+
+
+
 
 
