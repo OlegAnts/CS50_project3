@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include("encyclopedia.urls")),
     path('wiki/', include("encyclopedia.urls")),
     path('search/', views.search, name='search'),
+
 ]
