@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import util
 from django.contrib import messages
+from random import randint
 
 
 def index(request):
@@ -60,7 +61,6 @@ def create(request):
 
 
 
-
 def edit(request, title):
     if request.method == "POST":
         print()
@@ -77,3 +77,12 @@ def edit(request, title):
         "title": title
     })
 
+
+def random(request):
+    entries = util.list_entries()
+    random_entry = entries[randint(0, len(entries)-1)]
+
+    return render(request, "encyclopedia/entry.html", {
+        "entry": util.get_entry(random_entry),
+        "title": random_entry
+    })
