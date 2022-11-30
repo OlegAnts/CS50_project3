@@ -7,6 +7,9 @@
 {% block body %}
     <h1>{{ title }}</h1>
 
-            <p>{{ entry }}</p>
+    <p>{{ entry }}</p>
+    <a href="{% url 'encyclopedia:edit' title %}"> Edit {{ title }} entry page </a>
+
+
 
 {% endblock %}
