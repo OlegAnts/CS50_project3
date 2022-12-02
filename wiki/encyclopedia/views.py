@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . import util
 from django.contrib import messages
 from random import randint
+from markdown2 import Markdown
 
 
 def index(request):
@@ -11,8 +12,9 @@ def index(request):
 
 
 def entry(request, title):
+    markdowner = Markdown()
     return render(request, "encyclopedia/entry.html", {
-        "entry": util.get_entry(title),
+        "entry": markdowner.convert(util.get_entry(title)),
         "title": title.capitalize()
     })
 

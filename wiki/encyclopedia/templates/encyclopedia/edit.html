@@ -9,7 +9,8 @@
 
     <form id="create">
         {% csrf_token %}
-        <input name="title" type="text" value="{{ title }}">
+        <h2>{{ title }}</h2>
+        <input name="title" type="hidden" value="{{ title }}">
         <textarea id="content" name="content" rows="4" cols="50">{{ entry }}</textarea><br>
         <br>
         <input type="submit" formaction="{% url 'encyclopedia:edit' title %}" formmethod="post" value="Save">
